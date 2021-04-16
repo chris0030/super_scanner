@@ -8,6 +8,7 @@ import time
 # Set to true to display graphs of each chunk in browser
 # Adds ten second delay per loop for displaying
 GRAPH_TO_BROWSER = True
+
 LOWER_SCAN_LIMIT = 30e6
 UPPER_SCAN_LIMIT = 1000e6
 
