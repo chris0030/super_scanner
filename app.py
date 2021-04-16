@@ -24,9 +24,11 @@ class Scanner:
         self.center_frequency = center_freq
 
     def get_samples(self):
+        # Return ndArray of samples
         return self.sdr.read_samples(1024)
 
     def return_power_and_freq(self, samples):
+        # Returns a power array of power and psd_freq array of frequency
         power, psd_freq = mlab.psd(
             samples,
             NFFT=1024,
@@ -36,10 +38,12 @@ class Scanner:
         return (power, psd_freq)
 
     def return_freq_above_rate(self, power, psd_freq):
+        # Returns an array of frequencies that are above the POWER_THRESHOLD
         indices_above_rate = np.nonzero(power > self.power_threshold)
         return [psd_freq[i] for i in indices_above_rate[0]]
 
     def increment_center_freq(self):
+        # Increments the center frequency by the sample rate (which is the bandwidth)
         self.center_freq += self.sdr.sample_rate
 
 
